@@ -1,0 +1,21 @@
+{
+  "name": "html-welder",
+  "version": "0.1.0",
+  "description": "Small set of scripts used to generate websites from html parts.",
+  "main": "prepare.js",
+  "dependencies": {
+    "js-beautify": "^1.6.14"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "website",
+    "generator",
+    "html",
+    "concat"
+  ],
+  "author": "Eryk Miszczuk",
+  "license": "MIT"
+}
