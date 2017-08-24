@@ -2,9 +2,10 @@
   "name": "html-welder",
   "version": "0.1.0",
   "description": "Small set of scripts used to generate websites from html parts.",
-  "main": "prepare.js",
+  "main": "start.js",
   "dependencies": {
-    "js-beautify": "^1.6.14"
+    "js-beautify": "^1.6.14",
+    "vorpal": "^1.12.0"
   },
   "devDependencies": {},
   "scripts": {
@@ -16,6 +17,13 @@
     "html",
     "concat"
   ],
+  "bin": {
+    "html-welder": "./start.js"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "preferGlobal": true,
   "author": "Eryk Miszczuk",
   "license": "MIT"
 }
