@@ -1,11 +1,11 @@
 "use strict";
 
-function createFoot(year, title) {
-  return `<footer>
-        &copy; ${year} ${title}
-      </footer>
+  function createFoot(year, title) {
+    return `<footer>
+    &copy; ${year} ${title}
+    </footer>
     </body>
-  </html>`
-}
+    </html>`
+  }
 
-module.exports = createFoot;
+  module.exports = createFoot;

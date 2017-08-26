@@ -1,13 +1,13 @@
 "use strict";
 
-function createHead(lang, title, stylesheets = ``) {
-  return `<!DOCTYPE html>
-  <html lang="${lang}">
+  function createHead(lang, title, stylesheets = "") {
+    return `<!DOCTYPE html>
+    <html lang="${lang}">
     <head>
-      <meta charset="utf-8">
-      <title>${title}</title>${stylesheets}
+    <meta charset="utf-8">
+    <title>${title}</title>${stylesheets}
     </head>
     <body>`
-}
+  }
 
-module.exports = createHead;
+  module.exports = createHead;

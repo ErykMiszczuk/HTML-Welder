@@ -1,29 +1,28 @@
-/**
- * This code create array of main code blocks in this folder. Based on this array script will build a static files.
-*/
+"use strict";
 
 const fs = require('fs');
 const path = require('path');
-fs.readdir(".", 'utf-8', (err, files) => {
-  if (err) throw err;
-  files = files.filter((file) => {
-    return path.extname(file) == ".html";
-  })
-  files = files.filter((file) => {
-    let fileName = path.basename(file, path.extname(file));
-    return !(fileName == "head" || fileName == "foot");
-  })
-  files = files.map((file) => {
-    return path.basename(file, path.extname(file));
-  })
-  console.log(files);
-  files.map((file) => {
+const beautify_html = require('js-beautify').html;
+const createHead = require('./template-head.js');
+const createFoot = require('./template-foot.js');
+const createNav = require('./template-nav.js');
+const createWebsiteMap = require('./createWebsiteMap.js');
 
-    fs.readFile(`./${file}`+`.html`, 'utf8', (err, data3) => {
-      if (err) throw err;
-      console.log(data3);
-      console.log(`File ${file} saved!`);
-    });
+var readWebsiteMap = fs.createReadStream('./websiteMap.json');
+var websiteMap = "";
 
-  })
-})
+readWebsiteMap.setEncoding('utf8');
+
+readWebsiteMap.on('data', function(chunk) {
+    websiteMap += chunk;
+    console.log(chunk);
+});
+
+readWebsiteMap.on('end', function() {
+    let websiteMapObj = JSON.parse(websiteMap);
+    console.log(websiteMapObj);
+});
+console.log('\n\n\n\n');
+
+var map = require('./websiteMap.json');
+console.log(map);
