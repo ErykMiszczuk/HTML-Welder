@@ -8,7 +8,6 @@ const createNav = require('./template-nav.js');
 
 var fileName = "./build/";
 
-delete require.cache[require.resolve('./websiteMap.json')];
 var websiteMap = require('./websiteMap.json');
 
 var links = '';
@@ -22,7 +21,6 @@ websiteMap.map((anchor) => {
     fs.writeFileSync(fileName+`${anchor.filepath}`, buildHtml(data, anchor), (err) => {
       if (err) throw err;
       console.log(`File ${file} saved!`);
-      delete require.cache[require.resolve('./websiteMap.json')];
     });
   });
 

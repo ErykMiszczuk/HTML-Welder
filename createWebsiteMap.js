@@ -17,7 +17,8 @@ function createWebsiteMap() {
       let navitem = {
         filepath: file,
         name: name,
-        visible: true
+        visible: true,
+        type: 'site'
       };
       nav.push(navitem);
     });
