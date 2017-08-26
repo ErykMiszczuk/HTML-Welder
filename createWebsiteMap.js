@@ -16,7 +16,8 @@ function createWebsiteMap() {
       let name = path.basename(file, path.extname(file));
       let navitem = {
         filepath: file,
-        name: name
+        name: name,
+        visible: true
       };
       nav.push(navitem);
     });
@@ -26,6 +27,5 @@ function createWebsiteMap() {
     jsonWrite.end();
   });
 };
-createWebsiteMap();
 
 module.exports = createWebsiteMap;
