@@ -3,6 +3,8 @@
 const fs = require('fs');
 const path = require('path');
 const beautify_html = require('js-beautify').html;
+const createHead = require('./template-head.js');
+const createFoot = require('./template-foot.js');
 
 var fileName = "./build/";
 var header = "";
@@ -26,14 +28,14 @@ fs.readdir(".", 'utf-8', (err, files) => {
     return path.basename(file, path.extname(file));
   })
   console.log(files);
-  fs.readFile("./head.html", 'utf8', (err, data1) => {
-    if (err) throw err;
-    header = data1;
-    console.log(data1);
-    fs.readFile("./foot.html", 'utf8', (err, data2) => {
-      if (err) throw err;
-      footer = data2;
-      console.log(data2);
+  // fs.readFile("./head.html", 'utf8', (err, data1) => {
+  //   if (err) throw err;
+  //   header = data1;
+  //   console.log(data1);
+    // fs.readFile("./foot.html", 'utf8', (err, data2) => {
+    //   if (err) throw err;
+    //   footer = data2;
+    //   console.log(data2);
       // for (var file of files) {
       var links = `\n`;
       files.map((file) => {
@@ -50,12 +52,12 @@ fs.readdir(".", 'utf-8', (err, files) => {
 
       })
       // }
-    });
-  });
+    // });
+  // });
 })
 
 function buildHtml(headertext, linkstext, maintext, footertext) {
-  return beautify_html(`${headertext}<nav><ul>${linkstext}</ul></nav></header>${maintext}${footertext}`, options);
+  return beautify_html(`${createHead("pl","Test")}<nav><ul>${linkstext}</ul></nav></header>${maintext}${createFoot("2017", "Lucifer")}`, options);
 }
 
 var options = {
