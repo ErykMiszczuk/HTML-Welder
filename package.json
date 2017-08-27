@@ -2,7 +2,7 @@
   "name": "html-welder",
   "version": "0.1.0",
   "description": "Small set of scripts used to generate websites from html parts.",
-  "main": "start.js",
+  "main": "./start.js",
   "dependencies": {
     "js-beautify": "^1.6.14",
     "vorpal": "^1.12.0"
