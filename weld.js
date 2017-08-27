@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 "use strict";
 
 const fs = require('fs');
@@ -17,11 +18,10 @@ websiteMap.map((anchor) => {
     let link = `<li><a href="${anchor.filepath}">${anchor.name}</a></li>`;
     links += link;
   }
-  fs.readFile(fileInput+`./${anchor.filepath}`, 'utf8', (err, data) => {
+  fs.readFile(fileInput+`${anchor.filepath}`, 'utf8', (err, data) => {
     if (err) throw err;
     fs.writeFileSync(fileName+`${anchor.filepath}`, buildHtml(data, anchor), (err) => {
       if (err) throw err;
-      console.log(`File ${file} saved!`);
     });
   });
 
