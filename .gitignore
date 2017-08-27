@@ -1,6 +1,7 @@
 build
 node_modules
 templates
+input
 *.html
 *.tgz
 websiteMap.json

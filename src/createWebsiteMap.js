@@ -7,7 +7,7 @@ const beautify_json = require('js-beautify').js_beautify;
 var nav = [];
 
 function createWebsiteMap() {
-  fs.readdir(".", 'utf-8', (err, files) => {
+  fs.readdir("../input", 'utf-8', (err, files) => {
     if (err) throw err;
     files = files.filter((file) => {
       return path.extname(file) == ".html";
@@ -23,7 +23,7 @@ function createWebsiteMap() {
       nav.push(navitem);
     });
     console.log(JSON.stringify(nav));
-    let jsonWrite = fs.createWriteStream("./websiteMap.json");
+    let jsonWrite = fs.createWriteStream("../input/websiteMap.json");
     jsonWrite.write(beautify_json(JSON.stringify(nav), { indent_size: 2 }));
     jsonWrite.end();
   });

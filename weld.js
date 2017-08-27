@@ -7,8 +7,9 @@ const createFoot = require('./templates/template-foot.js');
 const createNav = require('./templates/template-nav.js');
 
 var fileName = "./build/";
+var fileInput = "./input/"
 
-var websiteMap = require('./websiteMap.json');
+var websiteMap = require(fileInput+'websiteMap.json');
 
 var links = '';
 websiteMap.map((anchor) => {
@@ -16,7 +17,7 @@ websiteMap.map((anchor) => {
     let link = `<li><a href="${anchor.filepath}">${anchor.name}</a></li>`;
     links += link;
   }
-  fs.readFile(`./${anchor.filepath}`, 'utf8', (err, data) => {
+  fs.readFile(fileInput+`./${anchor.filepath}`, 'utf8', (err, data) => {
     if (err) throw err;
     fs.writeFileSync(fileName+`${anchor.filepath}`, buildHtml(data, anchor), (err) => {
       if (err) throw err;
@@ -27,10 +28,7 @@ websiteMap.map((anchor) => {
 })
 
 function buildHtml(maintext, data = {}) {
-  return beautify_html(`${createHead("pl", data.name)}
-  ${createNav(links)}
-  ${maintext}
-  ${createFoot("2017", "Lucifer")}`, beautify_html_options);
+  return beautify_html(`${createHead("pl", data.name)}${createNav(links)}${maintext}${createFoot("2017", "Lucifer")}`, beautify_html_options);
 }
 
 var beautify_html_options = {

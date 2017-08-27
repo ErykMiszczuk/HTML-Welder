@@ -5,10 +5,10 @@
  */
 const fs = require('fs');
 const path = require('path');
-const prepare = require('./prepare.js');
-const weld = require('./weld.js');
-const downloadNormalize = require('./download-normalize.js');
-const createWebsiteMap = require('./createWebsiteMap.js');
+const prepare = require('./src/prepare.js');
+const weld = require('./src/weld.js');
+const downloadNormalize = require('./src/download-normalize.js');
+const createWebsiteMap = require('./src/createWebsiteMap.js');
 const vorpal = require('vorpal')();
 
 vorpal
