@@ -7,11 +7,13 @@ const theme = require('./theme-basic.js');
  * Prepare weld script to work
  */
 fs.mkdir("./build", () => {
-  fs.writeFile("./template-head.js", theme.headtext, {'flag': 'wx'}, () => {
-    fs.writeFile("./template-foot.js", theme.footext, {'flag': 'wx'}, () => {
-      fs.writeFile("./template-nav.js", theme.navtext, {'flag': 'wx'}, () => {
-        fs.writeFile("./main.html", theme.maintext, {'flag': 'wx'}, () => {
-          console.log("Create website file and directory structure.");
+  fs.mkdir("./templates", () => {
+    fs.writeFile("./templates/template-head.js", theme.headtext, {'flag': 'wx'}, () => {
+      fs.writeFile("./templates/template-foot.js", theme.footext, {'flag': 'wx'}, () => {
+        fs.writeFile("./templates/template-nav.js", theme.navtext, {'flag': 'wx'}, () => {
+          fs.writeFile("/main.html", theme.maintext, {'flag': 'wx'}, () => {
+            console.log("Create website file and directory structure.");
+          })
         })
       })
     })

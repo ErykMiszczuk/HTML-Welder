@@ -2,9 +2,9 @@
 
 const fs = require('fs');
 const beautify_html = require('js-beautify').html;
-const createHead = require('./template-head.js');
-const createFoot = require('./template-foot.js');
-const createNav = require('./template-nav.js');
+const createHead = require('./templates/template-head.js');
+const createFoot = require('./templates/template-foot.js');
+const createNav = require('./templates/template-nav.js');
 
 var fileName = "./build/";
 
