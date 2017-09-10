@@ -2,33 +2,39 @@
 "use strict";
 
 const fs = require('fs');
-const beautify_html = require('js-beautify').html;
-const createHead = require('./templates/template-head.js');
-const createFoot = require('./templates/template-foot.js');
-const createNav = require('./templates/template-nav.js');
+const path = require('path');
+var __dirpath = path.resolve();
+const createHead = require(__dirpath+'/templates/template-head.js');
+const createFoot = require(__dirpath+'/templates/template-foot.js');
+const createNav = require(__dirpath+'/templates/template-nav.js');
 
-var fileName = "./build/";
-var fileInput = "./input/"
+var fileName = __dirpath+"/build/";
+var fileInput = __dirpath+"/input/";
 
-var websiteMap = require(fileInput+'websiteMap.json');
+var websiteMap = require('./input/websiteMap.js');
 
 var links = '';
-websiteMap.map((anchor) => {
-  if (anchor.visible) {
-    let link = `<li><a href="${anchor.filepath}">${anchor.name}</a></li>`;
-    links += link;
-  }
-  fs.readFile(fileInput+`${anchor.filepath}`, 'utf8', (err, data) => {
-    if (err) throw err;
-    fs.writeFileSync(fileName+`${anchor.filepath}`, buildHtml(data, anchor), (err) => {
-      if (err) throw err;
-    });
-  });
 
-})
+function weld() {
+  websiteMap.map((anchor) => {
+    if (anchor.visible) {
+      let link = `<li><a href="${anchor.filepath}">${anchor.name}</a></li>`;
+      links += link;
+    }
+    fs.readFile(fileInput+`${anchor.filepath}`, 'utf8', (err, data) => {
+      if (err) throw err;
+      fs.writeFileSync(fileName+`${anchor.filepath}`, buildHtml(data, anchor), (err) => {
+        if (err) throw err;
+      });
+    });
+
+  })
+
+}
 
 function buildHtml(maintext, data = {}) {
-  return beautify_html(`${createHead("pl", data.name)}${createNav(links)}${maintext}${createFoot("2017", "Lucifer")}`, beautify_html_options);
+  const beautify_html = require('js-beautify').html;
+  return beautify_html(`${createHead("pl", data.name)}${createNav(links)}${maintext}${createFoot("2017", "Eximia Games")}`, beautify_html_options);
 }
 
 var beautify_html_options = {
@@ -45,3 +51,5 @@ var beautify_html_options = {
         }
     },
 }
+
+module.exports = weld;

@@ -3,6 +3,8 @@
 /**
  * Required libraries
  */
+ const path = require('path');
+ var __dirpath = path.resolve();
 const vorpal = require('vorpal')();
 
 vorpal
@@ -21,7 +23,7 @@ vorpal
 vorpal
   .command('weld', "Join files and create nav menu")
   .action(function(args, callback) {
-    let weld = require('./weld.js');
+    let weld = require(__dirpath+'/weld.js');
     weld();
     this.log("Website created")
     callback();

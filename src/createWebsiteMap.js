@@ -2,12 +2,13 @@
 
 const fs = require('fs');
 const path = require('path');
+var __dirpath = path.resolve();
 const beautify_json = require('js-beautify').js_beautify;
 
 var nav = [];
 
 function createWebsiteMap() {
-  fs.readdir("./input", 'utf-8', (err, files) => {
+  fs.readdir(__dirpath+"/input", 'utf-8', (err, files) => {
     if (err) throw err;
     files = files.filter((file) => {
       return path.extname(file) == ".html";
@@ -22,7 +23,7 @@ function createWebsiteMap() {
       };
       nav.push(navitem);
     });
-    let jsonWrite = fs.createWriteStream("./input/websiteMap.json");
+    let jsonWrite = fs.createWriteStream(__dirpath+"/input/websiteMap.js");
     let json = beautify_json(JSON.stringify(nav), { indent_size: 2 })
     let exportJson = `module.exports = ${json}`;
     jsonWrite.write(exportJson);
